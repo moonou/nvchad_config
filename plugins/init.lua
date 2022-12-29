@@ -19,6 +19,11 @@ return {
   ["TimUntersberger/neogit"] = {
     requires = 'nvim-lua/plenary.nvim'
   },
+  ["kylechui/nvim-surround"] = {
+    config = function ()
+      require("nvim-surround").setup({})
+    end
+  },
   -- overrde plugin configs
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = overrides.treesitter,
