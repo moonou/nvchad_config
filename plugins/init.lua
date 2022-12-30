@@ -24,6 +24,7 @@ return {
       require("nvim-surround").setup({})
     end
   },
+  ["vim-test/vim-test"] = {},
   -- overrde plugin configs
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = overrides.treesitter,

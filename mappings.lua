@@ -8,6 +8,14 @@ M.general = {
   },
 }
 
+M.test = {
+  -- vim test
+  n = {
+    ['<leader>t'] = {"<cmd> TestNearest -strategy=neovim <CR>", "test nearest"},
+    ['<leader>T'] = {"<cmd> TestFile -strategy=neovim <CR>", "test file"},
+  }
+}
+
 -- more keybinds!
 
 return M
