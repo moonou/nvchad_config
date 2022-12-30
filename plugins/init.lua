@@ -1,7 +1,7 @@
 local overrides = require "custom.plugins.overrides"
 
 return {
-  ['goolord/alpha-nvim'] = {
+  ["goolord/alpha-nvim"] = {
     disable = false,
   },
   ["neovim/nvim-lspconfig"] = {
@@ -17,12 +17,12 @@ return {
     end,
   },
   ["TimUntersberger/neogit"] = {
-    requires = 'nvim-lua/plenary.nvim'
+    requires = "nvim-lua/plenary.nvim",
   },
   ["kylechui/nvim-surround"] = {
-    config = function ()
-      require("nvim-surround").setup({})
-    end
+    config = function()
+      require("nvim-surround").setup {}
+    end,
   },
   ["vim-test/vim-test"] = {},
   -- overrde plugin configs
