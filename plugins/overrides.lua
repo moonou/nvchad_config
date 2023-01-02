@@ -9,6 +9,7 @@ M.treesitter = {
     "javascript",
     "typescript",
     "tsx",
+    "prisma"
   },
 }
 
@@ -24,6 +25,7 @@ M.mason = {
     "typescript-language-server",
     "eslint-lsp",
     "tailwindcss-language-server",
+    "prisma-language-server"
   },
 }
 

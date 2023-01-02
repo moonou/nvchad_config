@@ -5,9 +5,9 @@ return {
     disable = false,
   },
   ["keaising/im-select.nvim"] = {
-    config = function ()
+    config = function()
       require("im_select").setup()
-    end
+    end,
   },
   ["neovim/nvim-lspconfig"] = {
     config = function()
@@ -27,6 +27,13 @@ return {
   ["kylechui/nvim-surround"] = {
     config = function()
       require("nvim-surround").setup {}
+    end,
+  },
+  -- over  -- telescope 文件夹
+  ["nvim-telescope/telescope-file-browser.nvim"] = {
+    module = "telescope",
+    config = function()
+      require("telescope").load_extension "file_browser"
     end,
   },
   ["vim-test/vim-test"] = {},
