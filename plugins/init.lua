@@ -4,6 +4,11 @@ return {
   ["goolord/alpha-nvim"] = {
     disable = false,
   },
+  ["keaising/im-select.nvim"] = {
+    config = function ()
+      require("im_select").setup()
+    end
+  },
   ["neovim/nvim-lspconfig"] = {
     config = function()
       require "plugins.configs.lspconfig"
