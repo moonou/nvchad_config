@@ -37,6 +37,14 @@ return {
     end,
   },
   ["vim-test/vim-test"] = {},
+  -- git
+  ["lewis6991/gitsigns.nvim"] = {
+    config = function()
+      require("gitsigns").setup {
+        current_line_blame = true,
+      }
+    end,
+  },
   -- overrde plugin configs
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = overrides.treesitter,
