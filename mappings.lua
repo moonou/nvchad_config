@@ -6,7 +6,7 @@ M.general = {
     ["<A-j>"] = { "<cmd> move .+1 <CR>", "move current line to next" },
     ["<A-k>"] = { "<cmd> move .-2 <CR>", "move current line to prev" },
     -- telescope find browser
-    ["<leader>fg"] = { "<cmd> Telescope file_browser <CR>", "open telescope file browser" },
+    ["<leader>fg"] = { "<cmd> Telescope file_browser path=%:p:h <CR>", "open telescope file browser" },
   },
 }
 
