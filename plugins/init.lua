@@ -57,4 +57,23 @@ return {
   ["kyazdani42/nvim-tree.lua"] = {
     override_options = overrides.nvimtree,
   },
+  ["hrsh7th/nvim-cmp"] = {
+    override_options = overrides.cmp,
+  },
+  -- copilot
+  ["zbirenbaum/copilot.lua"] = {
+    cmd = "Copilot",
+    event = "VimEnter",
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup()
+      end, 100)
+    end,
+  },
+  ["zbirenbaum/copilot-cmp"] = {
+    after = { "copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
 }

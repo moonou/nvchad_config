@@ -9,7 +9,7 @@ M.treesitter = {
     "javascript",
     "typescript",
     "tsx",
-    "prisma"
+    "prisma",
   },
 }
 
@@ -25,7 +25,7 @@ M.mason = {
     "typescript-language-server",
     "eslint-lsp",
     "tailwindcss-language-server",
-    "prisma-language-server"
+    "prisma-language-server",
   },
 }
 
@@ -42,6 +42,17 @@ M.nvimtree = {
         git = true,
       },
     },
+  },
+}
+
+M.cmp = {
+  sources = {
+    { name = "copilot", group_index = 1 },
+    -- { name = "luasnip", group_index = 2 },
+    { name = "nvim_lsp", group_index = 1 },
+    { name = "buffer", group_index = 1 },
+    { name = "nvim_lua", group_index = 2 },
+    { name = "path", group_index = 2 },
   },
 }
 
