@@ -29,13 +29,6 @@ return {
       require("nvim-surround").setup {}
     end,
   },
-  -- over  -- telescope 文件夹
-  ["nvim-telescope/telescope-file-browser.nvim"] = {
-    module = "telescope",
-    config = function()
-      require("telescope").load_extension "file_browser"
-    end,
-  },
   ["vim-test/vim-test"] = {},
   -- git
   ["lewis6991/gitsigns.nvim"] = {
