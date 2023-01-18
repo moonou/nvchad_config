@@ -8,6 +8,9 @@ M.general = {
     -- telescope find browser
     ["<leader>fg"] = { "<cmd> Telescope file_browser path=%:p:h <CR>", "open telescope file browser" },
   },
+  i = {
+    ["jk"] = { "<ESC>", "jk to escape" },
+  }
 }
 
 M.test = {
