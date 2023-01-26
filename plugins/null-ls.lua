@@ -11,7 +11,27 @@ local sources = {
 
   -- webdev stuff
   -- b.formatting.deno_fmt,
-  b.formatting.prettier,
+  b.formatting.prettier.with {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "css",
+      "scss",
+      "less",
+      "html",
+      "json",
+      "jsonc",
+      "yaml",
+      "markdown",
+      "markdown.mdx",
+      "graphql",
+      "handlebars",
+      "prisma"
+    },
+  },
 
   -- Lua
   b.formatting.stylua,
@@ -21,7 +41,7 @@ local sources = {
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
   -- prisma
-  b.formatting.prismaFmt,
+  -- b.formatting.prismaFmt,
 }
 
 null_ls.setup {
