@@ -19,6 +19,9 @@ M.mason = {
     "lua-language-server",
     "stylua",
 
+    -- format
+    "prettier",
+
     -- web dev stuff
     "css-lsp",
     "html-lsp",
@@ -52,7 +55,7 @@ M.cmp = {
     { name = "nvim_lsp", group_index = 1 },
     { name = "buffer", group_index = 1 },
     { name = "nvim_lua", group_index = 2 },
-    { name = "path", group_index = 2 },
+    { name = "path", group_index = 1 },
   },
 }
 
