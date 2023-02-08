@@ -57,6 +57,9 @@ M.cmp = {
     { name = "nvim_lua", group_index = 2 },
     { name = "path", group_index = 1 },
   },
+  formatting = {
+    format = require("tailwindcss-colorizer-cmp").formatter,
+  },
 }
 
 return M
