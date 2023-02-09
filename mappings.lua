@@ -1,10 +1,12 @@
 local M = {}
 
 M.general = {
-  -- 移动行
   n = {
+  -- 移动行
     ["<A-j>"] = { "<cmd> move .+1 <CR>", "move current line to next" },
     ["<A-k>"] = { "<cmd> move .-2 <CR>", "move current line to prev" },
+    -- SymboldOutline
+    ["<leader>o"] = { "<cmd> SymbolsOutline <CR>", "open symbols outline" },
   },
   i = {
     ["jk"] = { "<ESC>", "jk to escape" },
