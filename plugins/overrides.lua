@@ -11,6 +11,9 @@ M.treesitter = {
     "tsx",
     "prisma",
   },
+  autotag = {
+    enable = true,
+  },
 }
 
 M.mason = {
