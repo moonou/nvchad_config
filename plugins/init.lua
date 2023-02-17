@@ -16,7 +16,7 @@ return {
     end,
   },
   ["jose-elias-alvarez/null-ls.nvim"] = {
-    after = "nvim-lspconfig",
+    -- after = "nvim-lspconfig",
     config = function()
       require "custom.plugins.null-ls"
     end,
@@ -64,7 +64,7 @@ return {
     end,
   },
   ["zbirenbaum/copilot-cmp"] = {
-    after = { "copilot.lua" },
+    -- after = { "copilot.lua" },
     config = function()
       require("copilot_cmp").setup()
     end,
