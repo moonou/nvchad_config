@@ -61,7 +61,9 @@ M.cmp = {
     { name = "path", group_index = 1 },
   },
   formatting = {
-    format = require("tailwindcss-colorizer-cmp").formatter,
+    format = function(a, b)
+      return require("tailwindcss-colorizer-cmp").formatter(a, b)
+    end
   },
 }
 
