@@ -20,7 +20,14 @@ local plugins = {
     end,
   },
   {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      current_line_blame = true
+    }
+  },
+  {
     "kylechui/nvim-surround",
+    event = "InsertEnter",
     config = function()
       require("nvim-surround").setup {}
     end,
@@ -70,7 +77,9 @@ local plugins = {
     event = "VimEnter",
     config = function()
       vim.defer_fn(function()
-        require("copilot").setup()
+        require("copilot").setup({
+          markdown = true
+        })
       end, 100)
     end,
     dependencies = {
@@ -82,11 +91,29 @@ local plugins = {
   },
   {
     "simrat39/symbols-outline.nvim",
+    event = "VimEnter",
     config = function()
       require("symbols-outline").setup()
     end,
   },
-  { "windwp/nvim-ts-autotag" },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter"
+  },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async"
+    },
+    event = "VimEnter",
+    config = function()
+      require("ufo").setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return {'treesitter', 'indent'}
+        end
+      })
+    end
+  }
 }
 
 return plugins
