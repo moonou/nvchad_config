@@ -1,6 +1,6 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
----@type NvPluginConfig[]
+---@type NvPluginSpec[]
 local plugins = {
   {
     "neovim/nvim-lspconfig",
@@ -22,8 +22,8 @@ local plugins = {
   {
     "lewis6991/gitsigns.nvim",
     opts = {
-      current_line_blame = true
-    }
+      current_line_blame = true,
+    },
   },
   {
     "kylechui/nvim-surround",
@@ -49,14 +49,6 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
-    dependencies = {
-      "roobert/tailwindcss-colorizer-cmp.nvim",
-      config = function()
-        require("tailwindcss-colorizer-cmp").setup {
-          color_square_width = 2,
-        }
-      end,
-    }
   },
 
   -- Install a plugin
@@ -77,9 +69,9 @@ local plugins = {
     event = "VimEnter",
     config = function()
       vim.defer_fn(function()
-        require("copilot").setup({
-          markdown = true
-        })
+        require("copilot").setup {
+          markdown = true,
+        }
       end, 100)
     end,
     dependencies = {
@@ -98,21 +90,55 @@ local plugins = {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "InsertEnter"
+    event = "InsertEnter",
   },
   {
     "kevinhwang91/nvim-ufo",
     dependencies = {
-      "kevinhwang91/promise-async"
+      "kevinhwang91/promise-async",
     },
     event = "VimEnter",
     config = function()
-      require("ufo").setup({
+      require("ufo").setup {
         provider_selector = function(bufnr, filetype, buftype)
-          return {'treesitter', 'indent'}
-        end
-      })
-    end
+          return { "treesitter", "indent" }
+        end,
+      }
+    end,
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      filetypes = { "*" },
+      user_default_options = {
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        names = true, -- "Name" codes like Blue or blue
+        RRGGBBAA = false, -- #RRGGBBAA hex codes
+        AARRGGBB = false, -- 0xAARRGGBB hex codes
+        rgb_fn = false, -- CSS rgb() and rgba() functions
+        hsl_fn = false, -- CSS hsl() and hsla() functions
+        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        -- Available modes for `mode`: foreground, background,  virtualtext
+        mode = "background", -- Set the display mode.
+        -- Available methods are false / true / "normal" / "lsp" / "both"
+        -- True is same as normal
+        tailwind = "both", -- Enable tailwind colors
+        -- parsers can contain values used in |user_default_options|
+        sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
+        virtualtext = "■",
+        -- update color values even if buffer is not focused
+        -- example use: cmp_menu, cmp_docs
+        always_update = true,
+      },
+      -- all the sub-options of filetypes apply to buftypes
+      buftypes = {},
+    },
+  },
+  {
+    "tpope/vim-fugitive",
+    cmd = "Git"
   }
 }
 
