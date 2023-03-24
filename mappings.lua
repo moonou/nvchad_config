@@ -10,6 +10,12 @@ M.general = {
   },
   i = {
     ["jk"] = { "<ESC>", "jk to escape" },
+    ["<C-/>"] = {
+      function()
+        require("cmp").complete()
+      end,
+      "show cmp"
+    },
   }
 }
 
