@@ -138,8 +138,44 @@ local plugins = {
   },
   {
     "tpope/vim-fugitive",
-    cmd = "Git"
-  }
+    event = "VimEnter",
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "VimEnter",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("todo-comments").setup {}
+    end,
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = "VimEnter",
+    config = function()
+      require("hlchunk").setup {
+        blank = {
+          enable = false,
+        },
+      }
+    end,
+  },
+  {
+    "phaazon/hop.nvim",
+    branch = "v2",
+    event = "VimEnter",
+    config = function()
+      require("hop").setup()
+    end,
+  },
+  {
+    "sindrets/diffview.nvim",
+    event = "VimEnter",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
 }
 
 return plugins
