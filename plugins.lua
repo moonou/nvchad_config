@@ -13,7 +13,6 @@ local plugins = {
         end,
       },
     },
-
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
@@ -45,6 +44,11 @@ local plugins = {
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
+    dependencies = {
+      {
+        "nvim-tree/nvim-web-devicons",
+      },
+    },
   },
   {
     "hrsh7th/nvim-cmp",
@@ -150,17 +154,17 @@ local plugins = {
       require("todo-comments").setup {}
     end,
   },
-  {
-    "shellRaining/hlchunk.nvim",
-    event = "VimEnter",
-    config = function()
-      require("hlchunk").setup {
-        blank = {
-          enable = false,
-        },
-      }
-    end,
-  },
+  -- {
+  --   "shellRaining/hlchunk.nvim",
+  --   event = "VimEnter",
+  --   config = function()
+  --     require("hlchunk").setup {
+  --       blank = {
+  --         enable = false,
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     "phaazon/hop.nvim",
     branch = "v2",
@@ -175,6 +179,54 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+  },
+  {
+    "David-Kunz/jester",
+    event = "VimEnter",
+    opts = {
+      cmd = "pnpm jest -t '$result' -- $file",
+      path_to_jest_debug = "node_modules/jest/bin/jest.js",
+      dap = {
+        type = "node2",
+        request = "launch",
+        cwd = vim.fn.getcwd(),
+        runtimeArgs = { "--inspect-brk", "$path_to_jest", "--no-coverage", "-t", "$result", "--", "$file" },
+        args = { "--no-cache" },
+        sourceMaps = true,
+        protocol = "inspector",
+        skipFiles = { "<node_internals>/**/*.js" },
+        console = "integratedTerminal",
+        port = 9229,
+        disableOptimisticBPs = true,
+      },
+    },
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VimEnter",
+    dependencies = {
+      {
+        "mfussenegger/nvim-dap",
+        config = function()
+          require "dap"
+          vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
+        end,
+      },
+    },
+    config = function()
+      require "custom.dap.dap-jest"
+      local dap, dapui = require "dap", require "dapui"
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
   },
 }
 
