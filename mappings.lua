@@ -37,8 +37,44 @@ M.general = {
 M.test = {
   -- vim test
   n = {
-    ["<leader>t"] = { "<cmd> TestNearest -strategy=neovim <CR>", "test nearest" },
-    ["<leader>T"] = { "<cmd> TestFile -strategy=neovim <CR>", "test file" },
+    ["<leader>t"] = {
+      function()
+        require("jester").run()
+      end,
+      "test nearest",
+    },
+    ["<leader>T"] = {
+      function()
+        require("jester").debug()
+      end,
+      "debug test nearest",
+    },
+    ["<leader>B"] = {
+      function()
+        require("dap").toggle_breakpoint()
+      end,
+      "toggle breakpoint",
+    },
+    ["<F5>"] = {
+      function ()
+        require("dap").continue()
+      end
+    },
+    ["<F10>"] = {
+      function ()
+        require("dap").step_over()
+      end
+    },
+    ["<F11>"] = {
+      function ()
+        require("dap").step_into()
+      end
+    },
+    ["<F12>"] = {
+      function ()
+        require("dap").step_out()
+      end
+    }
   },
 }
 

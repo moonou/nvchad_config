@@ -6,7 +6,11 @@ local M = {}
 
 M.override = {
   CursorLine = {
-    -- bg = "black2",
+    bg = "black2",
+  },
+  Visual = {
+    reverse = true,
+    bg = "#ffffff",
   },
   Comment = {
     italic = true,
