@@ -4,15 +4,15 @@ local overrides = require "custom.configs.overrides"
 local plugins = {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      -- format & linting
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
-    },
+    -- dependencies = {
+    --   -- format & linting
+    --   {
+    --     "jose-elias-alvarez/null-ls.nvim",
+    --     config = function()
+    --       require "custom.configs.null-ls"
+    --     end,
+    --   },
+    -- },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
@@ -67,24 +67,24 @@ local plugins = {
     "folke/which-key.nvim",
     enabled = true,
   },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "VimEnter",
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup {
-          markdown = true,
-        }
-      end, 100)
-    end,
-    dependencies = {
-      "zbirenbaum/copilot-cmp",
-      config = function()
-        require("copilot_cmp").setup()
-      end,
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "VimEnter",
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require("copilot").setup {
+  --         markdown = true,
+  --       }
+  --     end, 100)
+  --   end,
+  --   dependencies = {
+  --     "zbirenbaum/copilot-cmp",
+  --     config = function()
+  --       require("copilot_cmp").setup()
+  --     end,
+  --   },
+  -- },
   {
     "simrat39/symbols-outline.nvim",
     event = "VimEnter",
@@ -226,6 +226,14 @@ local plugins = {
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    --  for users those who want auto-save conform + lazyloading!
+    -- event = "BufWritePre"
+    config = function()
+      require "custom.configs.conform"
     end,
   },
 }
