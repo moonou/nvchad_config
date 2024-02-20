@@ -23,6 +23,13 @@ M.general = {
       end,
       "open hop",
     },
+    --  format with conform
+    ["<leader>fm"] = {
+      function()
+        require("conform").format()
+      end,
+      "formatting",
+    }
   },
   i = {
     ["<C-/>"] = {
