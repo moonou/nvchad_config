@@ -247,6 +247,7 @@ local plugins = {
     end,
     event = "BufEnter",
   },
+  { "wakatime/vim-wakatime", lazy = false },
 }
 
 return plugins
