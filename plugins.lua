@@ -212,6 +212,7 @@ local plugins = {
           vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
         end,
       },
+      "nvim-neotest/nvim-nio",
     },
     config = function()
       require "custom.dap.dap-jest"
@@ -248,6 +249,14 @@ local plugins = {
     event = "BufEnter",
   },
   { "wakatime/vim-wakatime", lazy = false },
+  {
+    "razak17/tailwind-fold.nvim",
+    opts = {
+      symbol = "󱏿",
+    },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "html", "svelte", "astro", "vue", "typescriptreact", "php", "blade" },
+  },
 }
 
 return plugins

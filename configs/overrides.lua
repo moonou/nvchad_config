@@ -33,7 +33,9 @@ M.mason = {
     "eslint-lsp",
     "tailwindcss-language-server",
     "prisma-language-server",
-    "deno"
+    "deno",
+    -- markdown --
+    "mdx-analyzer"
   },
 }
 

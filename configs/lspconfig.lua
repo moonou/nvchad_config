@@ -3,7 +3,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
-local servers = { "html", "cssls", "tailwindcss", "eslint", "prismals" }
+local servers = { "html", "cssls", "tailwindcss", "eslint", "prismals", "mdx_analyzer" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -16,6 +16,7 @@ lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   root_dir = lspconfig.util.root_pattern("package.json"),
+  single_file_support = false
 }
 
 

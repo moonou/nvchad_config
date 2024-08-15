@@ -7,7 +7,6 @@ M.general = {
     ["<A-k>"] = { "<cmd> move .-2 <CR>", "move current line to prev" },
     -- SymboldOutline
     ["<leader>o"] = { "<cmd> SymbolsOutline <CR>", "open symbols outline" },
-    ["<leader>cb"] = { "<cmd> bufdo bd <CR>", "close all buffers" },
     ["f"] = {
       function()
         local hop = require "hop"
@@ -29,7 +28,16 @@ M.general = {
         require("conform").format()
       end,
       "formatting",
-    }
+    },
+    -- close other saved buffer
+    ["<leader>cb"] = {
+      function()
+        vim.t.bufs = vim.tbl_filter(function(bufnr)
+          return vim.api.nvim_buf_get_option(bufnr, "modified")
+        end, vim.t.bufs)
+      end,
+      "close other buffer",
+    },
   },
   i = {
     ["<C-/>"] = {
@@ -63,25 +71,25 @@ M.test = {
       "toggle breakpoint",
     },
     ["<F5>"] = {
-      function ()
+      function()
         require("dap").continue()
-      end
+      end,
     },
     ["<F10>"] = {
-      function ()
+      function()
         require("dap").step_over()
-      end
+      end,
     },
     ["<F11>"] = {
-      function ()
+      function()
         require("dap").step_into()
-      end
+      end,
     },
     ["<F12>"] = {
-      function ()
+      function()
         require("dap").step_out()
-      end
-    }
+      end,
+    },
   },
 }
 
