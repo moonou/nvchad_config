@@ -1,6 +1,5 @@
 local overrides = require "custom.configs.overrides"
 
----@type NvPluginSpec[]
 local plugins = {
   {
     "neovim/nvim-lspconfig",
@@ -237,17 +236,6 @@ local plugins = {
       require "custom.configs.conform"
     end,
   },
-  {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require("codeium").setup {}
-    end,
-    event = "BufEnter",
-  },
   { "wakatime/vim-wakatime", lazy = false },
   {
     "razak17/tailwind-fold.nvim",
@@ -258,25 +246,62 @@ local plugins = {
     ft = { "html", "svelte", "astro", "vue", "typescriptreact", "php", "blade" },
   },
   {
+    "supermaven-inc/supermaven-nvim",
+    lazy = false,
+    config = function()
+      require("supermaven-nvim").setup({
+        keymaps = {
+          accept_suggestion = "<C-a>",
+        },
+      })
+    end,
+  },
+  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     build = "make",
+    lazy = false,
+    version = false, -- set this if you want to always pull the latest change
     opts = {
       -- add any opts here
+      -- provider = "openai",
       provider = "deepseek",
-    },
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      {
-        "grapp-dev/nui-components.nvim",
-        dependencies = {
-          "MunifTanjim/nui.nvim",
+      auto_suggestions_provider = "deepseek",
+      vendors = {
+        deepseek = {
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-coder",
+          api_key_name = "DEEPSEEK_API_KEY",
+          __inherited_from = "openai",
         },
       },
-      --- The below is optional, make sure to setup it properly if you have lazy=true
+      behaviour = {
+        auto_suggestions = false, -- Experimental stage
+      },
+    },
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+          },
+        },
+      },
+      {
+        -- Make sure to setup it properly if you have lazy=true
         "MeanderingProgrammer/render-markdown.nvim",
         opts = {
           file_types = { "markdown", "Avante" },

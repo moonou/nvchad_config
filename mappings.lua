@@ -3,8 +3,8 @@ local M = {}
 M.general = {
   n = {
     -- 移动行
-    ["<A-j>"] = { "<cmd> move .+1 <CR>", "move current line to next" },
-    ["<A-k>"] = { "<cmd> move .-2 <CR>", "move current line to prev" },
+    ["<M-j>"] = { "<cmd> move .+1 <CR>", "move current line to next" },
+    ["<M-k>"] = { "<cmd> move .-2 <CR>", "move current line to prev" },
     -- SymboldOutline
     ["<leader>o"] = { "<cmd> SymbolsOutline <CR>", "open symbols outline" },
     ["f"] = {
