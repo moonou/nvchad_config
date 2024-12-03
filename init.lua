@@ -35,3 +35,17 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- fold
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+
+vim.opt.relativenumber = true
+
+vim.diagnostic.config({
+  float = {
+    source = 'always',
+    border = 'rounded'
+  },
+})
