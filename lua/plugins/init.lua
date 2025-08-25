@@ -67,7 +67,9 @@ return {
         "prisma-language-server",
         "deno",
         -- markdown --
-        "mdx-analyzer"
+        "mdx-analyzer",
+        -- python --
+        "python-lsp-server",
       },
     },
   },
@@ -139,13 +141,6 @@ return {
   --   },
   -- },
   {
-    "simrat39/symbols-outline.nvim",
-    event = "VimEnter",
-    config = function()
-      require("symbols-outline").setup()
-    end,
-  },
-  {
     "windwp/nvim-ts-autotag",
     event = "InsertEnter",
   },
@@ -155,20 +150,20 @@ return {
     opts = {
       filetypes = { "*" },
       user_default_options = {
-        RGB = true,          -- #RGB hex codes
-        RRGGBB = true,       -- #RRGGBB hex codes
-        names = true,        -- "Name" codes like Blue or blue
-        RRGGBBAA = false,    -- #RRGGBBAA hex codes
-        AARRGGBB = false,    -- 0xAARRGGBB hex codes
-        rgb_fn = false,      -- CSS rgb() and rgba() functions
-        hsl_fn = false,      -- CSS hsl() and hsla() functions
-        css = false,         -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false,      -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        names = true, -- "Name" codes like Blue or blue
+        RRGGBBAA = false, -- #RRGGBBAA hex codes
+        AARRGGBB = false, -- 0xAARRGGBB hex codes
+        rgb_fn = false, -- CSS rgb() and rgba() functions
+        hsl_fn = false, -- CSS hsl() and hsla() functions
+        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
         -- Available modes for `mode`: foreground, background,  virtualtext
         mode = "background", -- Set the display mode.
         -- Available methods are false / true / "normal" / "lsp" / "both"
         -- True is same as normal
-        tailwind = "both",                              -- Enable tailwind colors
+        tailwind = "both", -- Enable tailwind colors
         -- parsers can contain values used in |user_default_options|
         sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
         virtualtext = "■",
@@ -240,66 +235,18 @@ return {
     "supermaven-inc/supermaven-nvim",
     lazy = false,
     config = function()
-      require("supermaven-nvim").setup({
+      require("supermaven-nvim").setup {
         keymaps = {
           accept_suggestion = "<C-a>",
         },
-      })
+      }
     end,
   },
   {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    build = "make",
-    lazy = false,
-    version = false, -- set this if you want to always pull the latest change
-    opts = {
-      -- add any opts here
-      -- provider = "openai",
-      provider = "deepseek",
-      auto_suggestions_provider = "deepseek",
-      vendors = {
-        deepseek = {
-          endpoint = "https://api.deepseek.com",
-          model = "deepseek-coder",
-          api_key_name = "DEEPSEEK_API_KEY",
-          __inherited_from = "openai",
-        },
-      },
-      behaviour = {
-        auto_suggestions = false, -- Experimental stage
-      },
-    },
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-          },
-        },
-      },
-      {
-        -- Make sure to setup it properly if you have lazy=true
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
+    "aznhe21/actions-preview.nvim",
+    config = function()
+      vim.keymap.set({ "v", "n" }, "gf", require("actions-preview").code_actions)
+    end,
   },
 
   -- {

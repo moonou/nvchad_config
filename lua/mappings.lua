@@ -17,5 +17,12 @@ map("i", "<C-/>",
 )
 
 map("n", "<leader>df", vim.diagnostic.open_float, { desc = "Show diagnostics" })
+map("n", "<leader>cb",
+  function()
+     vim.t.bufs = vim.tbl_filter(function(bufnr)
+        return vim.api.nvim_buf_get_option(bufnr, "modified")
+      end, vim.t.bufs)
+  end, { desc = "Close all modified buffers" }
+)
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
